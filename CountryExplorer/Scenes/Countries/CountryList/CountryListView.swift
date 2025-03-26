@@ -83,7 +83,7 @@ struct CountryListView: View {
                         country: country,
                         isSaved: true,
                         onTap: {
-                            //TODO: show country details
+                            viewModel.didSelectCountry(country)
                         },
                         onSave: { },
                         onRemove: {

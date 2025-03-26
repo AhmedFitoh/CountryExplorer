@@ -51,7 +51,14 @@ class AppCoordinator: NSObject, Coordinator {
 // MARK: - CountryListCoordinatorDelegate
 extension AppCoordinator: CountryListCoordinatorDelegate {
     func showCountryDetail(country: Country) {
-        //TODO: Show country details
+        let detailCoordinator = CountryDetailCoordinator(
+            navigationController: navigationController,
+            country: country,
+            storageService: storageService
+        )
+        childCoordinators.append(detailCoordinator)
+        detailCoordinator.parentCoordinator = self
+        detailCoordinator.start()
     }
     
     func showCountrySearch() {

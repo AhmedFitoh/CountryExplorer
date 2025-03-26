@@ -30,9 +30,16 @@ class AppCoordinator: NSObject, Coordinator {
     }
     
     func start() {
+        initializeCache()
         showCountryList()
     }
     
+    private func initializeCache() {
+        Task {
+            await (apiService as? APIService)?.cacheAllCountries()
+        }
+    }
+
     private func showCountryList() {
         let viewModel = CountryListViewModel(
             apiService: apiService,
@@ -46,6 +53,7 @@ class AppCoordinator: NSObject, Coordinator {
         let hostingController = UIHostingController(rootView: countryListView)
         navigationController.pushViewController(hostingController, animated: false)
     }
+    
 }
 
 // MARK: - CountryListCoordinatorDelegate
@@ -61,7 +69,4 @@ extension AppCoordinator: CountryListCoordinatorDelegate {
         detailCoordinator.start()
     }
     
-    func showCountrySearch() {
-        //TODO: Show country search
-    }
 }

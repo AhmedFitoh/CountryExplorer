@@ -11,7 +11,6 @@ import CoreLocation
 
 protocol CountryListCoordinatorDelegate: AnyObject {
     func showCountryDetail(country: Country)
-    func showCountrySearch()
 }
 
 class CountryListViewModel: ObservableObject {
@@ -72,10 +71,29 @@ class CountryListViewModel: ObservableObject {
         
         // Finally fetch all countries for search
         if allCountries.isEmpty {
-            await fetchAllCountries()
+            await fetchAllCountriesWithCacheFallback()
         }
     }
-    
+
+    private func fetchAllCountriesWithCacheFallback() async {
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
+        
+        do {
+            let countries = try await (apiService as? APIService)?.fetchAllCountriesWithCacheFallback() ?? []
+            DispatchQueue.main.async {
+                self.allCountries = countries
+                self.isLoading = false
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.errorMessage = "Failed to fetch countries: \(error.localizedDescription)"
+                self.isLoading = false
+            }
+        }
+    }
+
     @MainActor
     private func addUserCountry() async {
         do {
@@ -92,28 +110,6 @@ class CountryListViewModel: ObservableObject {
         }
     }
     
-//    @MainActor
-//    private func addUserCountry() async {
-//        do {
-//            // Get user location
-//            let location = try await locationService.getCurrentLocation()
-//            let countryCode = try await locationService.getCountryCode(from: location)
-//
-//            // Fetch country data
-//            let country = try await apiService.fetchCountryByCode(code: countryCode)
-//
-//            // Save to storage
-//            DispatchQueue.main.async {
-//                try? self.storageService.saveCountry(country)
-//            }
-//        } catch LocationError.permissionDenied {
-//            await addDefaultCountry()
-//        } catch {
-//            await addDefaultCountry()
-//            self.errorMessage = "Failed to get location: \(error.localizedDescription)"
-//        }
-//    }
-    
     @MainActor
     private func addDefaultCountry() async {
         do {
@@ -123,39 +119,7 @@ class CountryListViewModel: ObservableObject {
             errorMessage = "Failed to add default country: \(error.localizedDescription)"
         }
     }
-    
-//    private func addDefaultCountry() async {
-//        do {
-//            let country = try await apiService.fetchCountryByCode(code: LocationConstants.defaultCountryCode)
-//            DispatchQueue.main.async {
-//                try? self.storageService.saveCountry(country)
-//            }
-//        } catch {
-//            DispatchQueue.main.async {
-//                self.errorMessage = "Failed to add default country: \(error.localizedDescription)"
-//            }
-//        }
-//    }
-    
-//    private func fetchAllCountries() async {
-//        DispatchQueue.main.async {
-//            self.isLoading = true
-//        }
-//        
-//        do {
-//            let countries = try await apiService.fetchAllCountries()
-//            DispatchQueue.main.async {
-//                self.allCountries = countries
-//                self.isLoading = false
-//            }
-//        } catch {
-//            DispatchQueue.main.async {
-//                self.errorMessage = "Failed to fetch countries: \(error.localizedDescription)"
-//                self.isLoading = false
-//            }
-//        }
-//    }
-    
+ 
     @MainActor
     private func fetchAllCountries() async {
         isLoading = true
@@ -216,6 +180,6 @@ class CountryListViewModel: ObservableObject {
     func didTapAddCountry() {
         guard didReachMaxCountries() else {return}
         
-        coordinatorDelegate?.showCountrySearch()
+//        coordinatorDelegate?.showCountrySearch()
     }
 }

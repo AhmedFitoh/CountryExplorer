@@ -14,19 +14,11 @@
 			remoteGlobalIDString = 9C7FC2932D92EDDB00835C17;
 			remoteInfo = CountryExplorer;
 		};
-		9C7FC2B42D92EDDC00835C17 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9C7FC28C2D92EDDB00835C17 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9C7FC2932D92EDDB00835C17;
-			remoteInfo = CountryExplorer;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9C7FC2942D92EDDB00835C17 /* CountryExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountryExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7FC2A92D92EDDC00835C17 /* CountryExplorerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountryExplorerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C7FC2B32D92EDDC00835C17 /* CountryExplorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountryExplorerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -57,13 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9C7FC2B02D92EDDC00835C17 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -81,7 +66,6 @@
 			children = (
 				9C7FC2942D92EDDB00835C17 /* CountryExplorer.app */,
 				9C7FC2A92D92EDDC00835C17 /* CountryExplorerTests.xctest */,
-				9C7FC2B32D92EDDC00835C17 /* CountryExplorerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,26 +118,6 @@
 			productReference = 9C7FC2A92D92EDDC00835C17 /* CountryExplorerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9C7FC2B22D92EDDC00835C17 /* CountryExplorerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9C7FC2C32D92EDDC00835C17 /* Build configuration list for PBXNativeTarget "CountryExplorerUITests" */;
-			buildPhases = (
-				9C7FC2AF2D92EDDC00835C17 /* Sources */,
-				9C7FC2B02D92EDDC00835C17 /* Frameworks */,
-				9C7FC2B12D92EDDC00835C17 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9C7FC2B52D92EDDC00835C17 /* PBXTargetDependency */,
-			);
-			name = CountryExplorerUITests;
-			packageProductDependencies = (
-			);
-			productName = CountryExplorerUITests;
-			productReference = 9C7FC2B32D92EDDC00835C17 /* CountryExplorerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -168,10 +132,6 @@
 						CreatedOnToolsVersion = 16.1;
 					};
 					9C7FC2A82D92EDDC00835C17 = {
-						CreatedOnToolsVersion = 16.1;
-						TestTargetID = 9C7FC2932D92EDDB00835C17;
-					};
-					9C7FC2B22D92EDDC00835C17 = {
 						CreatedOnToolsVersion = 16.1;
 						TestTargetID = 9C7FC2932D92EDDB00835C17;
 					};
@@ -193,7 +153,6 @@
 			targets = (
 				9C7FC2932D92EDDB00835C17 /* CountryExplorer */,
 				9C7FC2A82D92EDDC00835C17 /* CountryExplorerTests */,
-				9C7FC2B22D92EDDC00835C17 /* CountryExplorerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -207,13 +166,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9C7FC2A72D92EDDC00835C17 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C7FC2B12D92EDDC00835C17 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -237,13 +189,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9C7FC2AF2D92EDDC00835C17 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -251,11 +196,6 @@
 			isa = PBXTargetDependency;
 			target = 9C7FC2932D92EDDB00835C17 /* CountryExplorer */;
 			targetProxy = 9C7FC2AA2D92EDDC00835C17 /* PBXContainerItemProxy */;
-		};
-		9C7FC2B52D92EDDC00835C17 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9C7FC2932D92EDDB00835C17 /* CountryExplorer */;
-			targetProxy = 9C7FC2B42D92EDDC00835C17 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -388,6 +328,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To detect your country, kindly allow Location permission";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To detect your country, kindly allow Location permission";
+				INFOPLIST_KEY_NSLocationTemporaryUsageDescriptionDictionary = "To detect your country, kindly allow Location permission";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -415,6 +358,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To detect your country, kindly allow Location permission";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To detect your country, kindly allow Location permission";
+				INFOPLIST_KEY_NSLocationTemporaryUsageDescriptionDictionary = "To detect your country, kindly allow Location permission";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -469,38 +415,6 @@
 			};
 			name = Release;
 		};
-		9C7FC2C42D92EDDC00835C17 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = AhmedFitoh.CountryExplorerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CountryExplorer;
-			};
-			name = Debug;
-		};
-		9C7FC2C52D92EDDC00835C17 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = AhmedFitoh.CountryExplorerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CountryExplorer;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -527,15 +441,6 @@
 			buildConfigurations = (
 				9C7FC2C12D92EDDC00835C17 /* Debug */,
 				9C7FC2C22D92EDDC00835C17 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9C7FC2C32D92EDDC00835C17 /* Build configuration list for PBXNativeTarget "CountryExplorerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9C7FC2C42D92EDDC00835C17 /* Debug */,
-				9C7FC2C52D92EDDC00835C17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

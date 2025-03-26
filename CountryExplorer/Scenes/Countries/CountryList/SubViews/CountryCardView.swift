@@ -22,9 +22,9 @@ struct CountryCardView: View {
                     .foregroundColor(.primary)
                 
                 Spacer()
-                
-                Text(country.flag)
-                    .font(.title)
+                SVGWebView(urlString: country.flag)
+                    .frame(width: 80, height: 80)
+                    .aspectRatio(contentMode: .fit)
             }
             .padding(.bottom, 4)
             

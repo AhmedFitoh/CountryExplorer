@@ -38,7 +38,18 @@ struct CountryListView: View {
         }
         .sheet(isPresented: $isSearchPresented) {
             NavigationView {
-                //TODO: Show CountrySearchView
+                CountrySearchView(viewModel: viewModel) { country in
+                    isSearchPresented = false
+                    coordinator.showCountryDetail(country: country)
+                }
+                .navigationTitle("Find a Country")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Cancel") {
+                            isSearchPresented = false
+                        }
+                    }
+                }
             }
         }
         .alert(isPresented: $showingAlert) {

@@ -71,7 +71,9 @@ class CountryListViewModel: ObservableObject {
         }
         
         // Finally fetch all countries for search
-        await fetchAllCountries()
+        if allCountries.isEmpty {
+            await fetchAllCountries()
+        }
     }
     
     @MainActor
@@ -128,6 +130,15 @@ class CountryListViewModel: ObservableObject {
         }
     }
     
+    private func didReachMaxCountries() -> Bool {
+        if savedCountries.count >= StorageConstants.maxSavedCountries {
+            errorMessage = "You can only save up to \(StorageConstants.maxSavedCountries) countries."
+            return false
+        } else {
+            return true
+        }
+    }
+    
     func searchCountries(query: String) {
         guard !query.isEmpty else {
             searchResults = []
@@ -142,6 +153,8 @@ class CountryListViewModel: ObservableObject {
     }
     
     func saveCountry(_ country: Country) {
+        guard didReachMaxCountries() else {return}
+
         do {
             try storageService.saveCountry(country)
         } catch {
@@ -164,10 +177,7 @@ class CountryListViewModel: ObservableObject {
     }
     
     func didTapAddCountry() {
-        if savedCountries.count >= StorageConstants.maxSavedCountries {
-            errorMessage = "You can only save up to \(StorageConstants.maxSavedCountries) countries."
-            return
-        }
+        guard didReachMaxCountries() else {return}
         
         coordinatorDelegate?.showCountrySearch()
     }

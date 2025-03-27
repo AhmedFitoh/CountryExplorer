@@ -28,16 +28,6 @@ struct CountryDetailView: View {
         }
         .navigationTitle(viewModel.country.name)
         .navigationBarTitleDisplayMode(.large)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    viewModel.toggleSaved()
-                }) {
-                    Image(systemName: viewModel.isSaved ? "star.fill" : "star")
-                        .foregroundColor(viewModel.isSaved ? .yellow : .blue)
-                }
-            }
-        }
     }
     
     private var headerSection: some View {
@@ -47,16 +37,10 @@ struct CountryDetailView: View {
                 .frame(width: 80, height: 80)
                 .aspectRatio(contentMode: .fit)
             
-            VStack(alignment: .leading, spacing: 8) {
-                Text(viewModel.country.name)
-                    .font(.title)
-                    .fontWeight(.bold)
-                
                 Text("Country Code: \(viewModel.country.alpha2Code)")
                     .font(.headline)
                     .foregroundColor(.secondary)
-            }
-            .padding(.leading)
+                    .padding(.leading)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -84,7 +68,6 @@ struct CountryDetailView: View {
                 .foregroundColor(.white)
                 .cornerRadius(10)
             }
-            .disabled(viewModel.isSaved && viewModel.country.alpha2Code == LocationConstants.defaultCountryCode)
         }
     }
     

@@ -79,55 +79,92 @@ class CountryListViewModel: ObservableObject {
     @MainActor
     private func addUserCountry() async {
         do {
-            // Get user location
             let location = try await locationService.getCurrentLocation()
             let countryCode = try await locationService.getCountryCode(from: location)
-            
-            // Fetch country data
             let country = try await apiService.fetchCountryByCode(code: countryCode)
-            
-            // Save to storage
-            DispatchQueue.main.async {
-                try? self.storageService.saveCountry(country)
-            }
+
+            try storageService.saveCountry(country)
         } catch LocationError.permissionDenied {
             await addDefaultCountry()
         } catch {
             await addDefaultCountry()
-            self.errorMessage = "Failed to get location: \(error.localizedDescription)"
+            errorMessage = "Failed to get location: \(error.localizedDescription)"
         }
     }
     
+//    @MainActor
+//    private func addUserCountry() async {
+//        do {
+//            // Get user location
+//            let location = try await locationService.getCurrentLocation()
+//            let countryCode = try await locationService.getCountryCode(from: location)
+//
+//            // Fetch country data
+//            let country = try await apiService.fetchCountryByCode(code: countryCode)
+//
+//            // Save to storage
+//            DispatchQueue.main.async {
+//                try? self.storageService.saveCountry(country)
+//            }
+//        } catch LocationError.permissionDenied {
+//            await addDefaultCountry()
+//        } catch {
+//            await addDefaultCountry()
+//            self.errorMessage = "Failed to get location: \(error.localizedDescription)"
+//        }
+//    }
+    
+    @MainActor
     private func addDefaultCountry() async {
         do {
             let country = try await apiService.fetchCountryByCode(code: LocationConstants.defaultCountryCode)
-            DispatchQueue.main.async {
-                try? self.storageService.saveCountry(country)
-            }
+            try storageService.saveCountry(country)
         } catch {
-            DispatchQueue.main.async {
-                self.errorMessage = "Failed to add default country: \(error.localizedDescription)"
-            }
+            errorMessage = "Failed to add default country: \(error.localizedDescription)"
         }
     }
     
+//    private func addDefaultCountry() async {
+//        do {
+//            let country = try await apiService.fetchCountryByCode(code: LocationConstants.defaultCountryCode)
+//            DispatchQueue.main.async {
+//                try? self.storageService.saveCountry(country)
+//            }
+//        } catch {
+//            DispatchQueue.main.async {
+//                self.errorMessage = "Failed to add default country: \(error.localizedDescription)"
+//            }
+//        }
+//    }
+    
+//    private func fetchAllCountries() async {
+//        DispatchQueue.main.async {
+//            self.isLoading = true
+//        }
+//        
+//        do {
+//            let countries = try await apiService.fetchAllCountries()
+//            DispatchQueue.main.async {
+//                self.allCountries = countries
+//                self.isLoading = false
+//            }
+//        } catch {
+//            DispatchQueue.main.async {
+//                self.errorMessage = "Failed to fetch countries: \(error.localizedDescription)"
+//                self.isLoading = false
+//            }
+//        }
+//    }
+    
+    @MainActor
     private func fetchAllCountries() async {
-        DispatchQueue.main.async {
-            self.isLoading = true
-        }
-        
+        isLoading = true
         do {
-            let countries = try await apiService.fetchAllCountries()
-            DispatchQueue.main.async {
-                self.allCountries = countries
-                self.isLoading = false
-            }
+            allCountries = try await apiService.fetchAllCountries()
         } catch {
-            DispatchQueue.main.async {
-                self.errorMessage = "Failed to fetch countries: \(error.localizedDescription)"
-                self.isLoading = false
-            }
+            errorMessage = "Failed to fetch countries: \(error.localizedDescription)"
         }
+        isLoading = false
     }
     
     private func didReachMaxCountries() -> Bool {

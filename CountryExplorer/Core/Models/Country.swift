@@ -15,6 +15,7 @@ struct Country: Identifiable, Codable, Equatable {
     let flag: String
     let alpha2Code: String
     let alpha3Code: String
+    var isCache: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case name, capital, currencies, flag, alpha2Code, alpha3Code
